@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Outsiders | Character Dossiers + Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <header class="top">
+        <div class="brand" aria-label="Site header">
+          <div class="crest" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="56" height="56" focusable="false">
+              <path
+                d="M32 3c8 7 16 8 25 8 0 24-8 39-25 50C15 50 7 35 7 11c9 0 17-1 25-8Z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path d="M18 22h28M18 30h28M18 38h28" stroke="currentColor" stroke-width="2" opacity="0.65" />
+              <path
+                d="M22 47c4-7 16-7 20 0"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                opacity="0.65"
+              />
+            </svg>
+          </div>
+          <div class="brand-copy">
+            <p class="kicker">A reader’s dossier</p>
+            <h1><em class="title-em">THE OUTSIDERS</em></h1>
+            <p class="subtitle">Characters, symbols, and a quiz game. Spoilers are off by default. Stay gold.</p>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <nav class="tabs" aria-label="Primary" role="tablist">
+            <button class="tab is-active" id="tab-dossiers" type="button" role="tab" aria-selected="true" aria-controls="view-dossiers">
+              Dossiers
+            </button>
+            <button class="tab" id="tab-book" type="button" role="tab" aria-selected="false" aria-controls="view-book">Book</button>
+            <button class="tab" id="tab-quiz" type="button" role="tab" aria-selected="false" aria-controls="view-quiz">Quiz</button>
+            <button class="tab" id="tab-shop" type="button" role="tab" aria-selected="false" aria-controls="view-shop">Shop</button>
+          </nav>
+
+          <div class="header-controls" aria-label="Preferences">
+            <label class="control compact">
+              <span class="label">Theme</span>
+              <select id="theme" aria-label="Theme">
+                <option value="ivory">Ivory</option>
+                <option value="sky">Light Blue</option>
+                <option value="white">White</option>
+                <option value="sepia">Sepia</option>
+                <option value="forest">Forest</option>
+                <option value="rose">Rose</option>
+                <option value="charcoal">Charcoal</option>
+                <option value="black">Black</option>
+                <option value="contrast">High Contrast</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <main id="main" class="main" tabindex="-1">
+        <section id="view-dossiers" class="view is-active" role="tabpanel" aria-labelledby="tab-dossiers">
+          <div class="panel">
+            <div class="panel-row">
+              <div class="controls">
+                <label class="control">
+                  <span class="label">Search</span>
+                  <input id="search" type="search" placeholder="Try: Ponyboy, Socs, loyalty…" autocomplete="off" />
+                </label>
+                <label class="control">
+                  <span class="label">Group</span>
+                  <select id="group">
+                    <option value="all">All</option>
+                    <option value="greasers">Greasers</option>
+                    <option value="socs">Socs</option>
+                    <option value="adults">Adults</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+              </div>
+
+              <label class="toggle">
+                <input id="spoilers" type="checkbox" />
+                <span class="toggle-ui" aria-hidden="true"></span>
+                <span class="toggle-text">Show spoilers</span>
+              </label>
+            </div>
+
+            <div class="note" role="note">
+              <p>
+                This site uses original summaries and short factual notes. It does not reproduce the novel’s text. It includes the major named characters and key supporting roles.
+              </p>
+            </div>
+          </div>
+
+          <div id="grid" class="grid" aria-live="polite"></div>
+        </section>
+
+        <section id="view-book" class="view" role="tabpanel" aria-labelledby="tab-book">
+          <div class="two-col">
+            <article class="card">
+              <h2>Book Facts</h2>
+              <ul id="book-facts" class="facts"></ul>
+            </article>
+            <article class="card">
+              <h2>Themes + Motifs</h2>
+              <div id="themes" class="themes"></div>
+            </article>
+          </div>
+          <article class="card wide">
+            <h2>Quick Study Guide</h2>
+            <div id="study" class="study"></div>
+          </article>
+          <article class="card wide">
+            <h2>Symbols</h2>
+            <div id="symbols" class="symbols"></div>
+          </article>
+          <article class="card wide">
+            <h2>Chapter Summaries</h2>
+            <p class="muted">Turn on “Show spoilers” to reveal full chapter summaries.</p>
+            <div id="chapters" class="chapters"></div>
+          </article>
+        </section>
+
+        <section id="view-quiz" class="view" role="tabpanel" aria-labelledby="tab-quiz">
+          <div class="card wide">
+            <div class="quiz-head">
+              <div>
+                <h2>Quiz Game</h2>
+                <p class="muted">Learn the characters by playing. Explanations appear after each answer.</p>
+              </div>
+              <div class="quiz-stats" aria-label="Quiz stats">
+                <span>Score: <strong id="q-score">0</strong></span>
+                <span>Streak: <strong id="q-streak">0</strong></span>
+                <span>Best: <strong id="q-best">0</strong></span>
+              </div>
+            </div>
+
+            <div class="quiz-controls">
+              <label class="control">
+                <span class="label">Mode</span>
+                <select id="q-mode">
+                  <option value="who">Who Am I?</option>
+                  <option value="facts">Fact Check</option>
+                </select>
+              </label>
+              <button id="q-start" class="btn" type="button">Start</button>
+              <button id="q-next" class="btn ghost" type="button" disabled>Next</button>
+              <button id="q-reset" class="btn ghost" type="button">Reset</button>
+            </div>
+
+            <div class="quiz">
+              <p id="q-prompt" class="q-prompt">Choose a mode and press Start.</p>
+              <div id="q-choices" class="q-choices" role="group" aria-label="Answer choices"></div>
+              <div id="q-explain" class="q-explain" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-shop" class="view" role="tabpanel" aria-labelledby="tab-shop">
+          <div class="two-col">
+            <article class="card">
+              <h2>Buy The Outsiders</h2>
+              <p class="muted">Links open in a new tab. Choose print, ebook, or audiobook.</p>
+              <div id="buy-links" class="buy"></div>
+            </article>
+            <article class="card">
+              <h2>More Books By S. E. Hinton</h2>
+              <p class="muted">A quick bibliography-style list to explore next.</p>
+              <div id="other-books" class="other-grid" aria-label="Other books list"></div>
+            </article>
+          </div>
+          <article class="card wide">
+            <h2>Reading Order Ideas</h2>
+            <div id="reading-order" class="themes"></div>
+          </article>
+          <article class="card wide">
+            <h2>Want A Quick Glimpse?</h2>
+            <p class="muted">Use the Book tab’s chapter summaries and symbols for fast studying.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="foot">
+        <p>
+          Built as a study-friendly character dossier for <em>The Outsiders</em> (S. E. Hinton).
+        </p>
+      </footer>
+    </div>
+
+    <dialog id="modal" class="modal" aria-label="Character dossier">
+      <form method="dialog" class="modal-shell">
+        <div class="modal-head">
+          <div>
+            <p id="m-group" class="pill"></p>
+            <h3 id="m-name" class="m-title"></h3>
+            <p id="m-tagline" class="muted"></p>
+            <div class="m-actions">
+              <button id="m-spoiler-toggle" class="btn ghost small" type="button" aria-pressed="false">
+                Spoilers: Off
+              </button>
+            </div>
+          </div>
+          <button class="icon-btn" value="close" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <section class="m-section">
+            <h4>Summary</h4>
+            <p id="m-summary"></p>
+          </section>
+
+          <section class="m-section">
+            <h4>At A Glance</h4>
+            <dl id="m-dl" class="dl"></dl>
+          </section>
+
+          <section class="m-section">
+            <h4>Relationships</h4>
+            <ul id="m-rel" class="list"></ul>
+          </section>
+
+          <section class="m-section">
+            <h4>Fun Facts</h4>
+            <ul id="m-fun" class="list"></ul>
+          </section>
+
+          <section id="m-spoilers-wrap" class="m-section">
+            <h4>Key Moments (Spoilers)</h4>
+            <ul id="m-spoilers" class="list"></ul>
+          </section>
+        </div>
+
+        <div class="modal-foot">
+          <button class="btn ghost" value="close" type="submit">Close</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="book-modal" class="modal" aria-label="Book details">
+      <form method="dialog" class="modal-shell">
+        <div class="modal-head">
+          <div>
+            <p class="pill">S. E. Hinton</p>
+            <h3 id="bm-title" class="m-title"></h3>
+            <p id="bm-tagline" class="muted"></p>
+            <div class="m-actions">
+              <div id="bm-links" class="buy" aria-label="Buy links"></div>
+            </div>
+          </div>
+          <button class="icon-btn" value="close" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <section class="m-section">
+            <h4>Summary</h4>
+            <p id="bm-summary"></p>
+          </section>
+          <section class="m-section">
+            <h4>Highlights</h4>
+            <ul id="bm-highlights" class="list"></ul>
+          </section>
+        </div>
+
+        <div class="modal-foot">
+          <button class="btn ghost" value="close" type="submit">Close</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="game.js" defer></script>
+  </body>
+</html>
